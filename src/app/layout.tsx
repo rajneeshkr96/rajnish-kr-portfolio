@@ -7,9 +7,9 @@ const geistSans = localFont({
   variable: "--font-geist-sans",
   weight: "100 900",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+const TTCommonsProVar = localFont({
+  src: "./fonts/TTCommonsProVar.woff2",
+  variable: "--font-TTCommonsProVar",
   weight: "100 900",
 });
 
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${TTCommonsProVar.variable} antialiased`}
       >
         {children}
       </body>
