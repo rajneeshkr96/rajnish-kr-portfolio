@@ -12,6 +12,14 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      textColor: {
+        primary: "rgb(249, 242, 237)",
+        secondary: "rgba(0,0,0,.075)",
+      },
+      backgroundColor: {
+        primary: "rgb(249, 242, 237)",
+        secondary: "rgba(0,0,0,.075)",
+      },
     },
   },
   plugins: [],
