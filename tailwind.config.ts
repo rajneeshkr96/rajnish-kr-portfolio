@@ -14,11 +14,11 @@ const config: Config = {
       },
       textColor: {
         primary: "rgb(249, 242, 237)",
-        secondary: "rgba(0,0,0,.075)",
+        secondary: "#171717",
       },
       backgroundColor: {
         primary: "rgb(249, 242, 237)",
-        secondary: "rgba(0,0,0,.075)",
+        secondary: "#171717",
       },
     },
   },
