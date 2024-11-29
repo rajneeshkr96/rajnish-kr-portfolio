@@ -1,8 +1,11 @@
 "use client"
 
-import { motion } from "motion/react"
-import { useState } from "react"
-const Navbar = () => {
+import { NavbarProps } from "@/_types/interface"
+import { AnimatePresence, motion } from "motion/react"
+import { FC, useState } from "react"
+import { menuSlide } from "./animation"
+
+const Navbar: FC<NavbarProps> = ({ className }) => {
   const [open, setOpen] = useState(false)
 
   const manu = [
@@ -41,25 +44,33 @@ const Navbar = () => {
       link: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     },
   ]
-
   const manuUi = () => {
     return (
-      <motion.div animate={{ translateY: "0%" }} initial={{ translateY: "-100%" }} transition={{ duration: 0.5 }} className='w-full h-screen bg-primary z-50 absolute top-0 left-0 grid grid-cols-2 grid-rows-1 '>
-        <div className="pages">
-          <div className="flex flex-col justify-center items-center">
+      <motion.div
+        variants={menuSlide}
+        initial="initial"
+        animate="enter"
+        exit="exit"
+        className={`w-full h-screen bg-primary z-50 absolute top-0 left-0 grid grid-cols-3 grid-rows-1 `}>
+        {/* close */}
+        <div className="close cursor-pointer absolute top-8 right-24" onClick={() => setOpen(!open)}>
+          Close
+        </div>
+        <div className="pages flex justify-center items-center">
+          <div className="grid grid-cols-1 ">
             {manu.map((item, index) => (
-              <div key={index} className="text-4xl font-bold  cursor-pointer py-4">
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} key={index} className="text-4xl font-bold cursor-pointer py-3 ">
                 <a href={item.link}>{item.name}</a>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
         {/* sociallink */}
-        <div className="socialLinks">
+        <div className="socialLinks flex justify-center items-center col-span-2">
 
-          <div className="flex flex-col justify-center items-center">
+          <div className="grid-cols-2 bg-black">
             {SocialLink.map((item, index) => (
-              <div key={index} className="text-4xl font-bold cursor-pointer py-4">
+              <div key={index} className="text-4xl font-bold cursor-pointer py-4 ">
                 <a href={item.link}>{item.name}</a>
               </div>
             ))}
@@ -71,10 +82,12 @@ const Navbar = () => {
   }
 
   return (
-    <div className='flex py-12 px-32 justify-between items-center'>
+    <div className={`flex py-6 px-32 justify-between items-center bg-primary backdrop-blur-sm nav-elements ${className}`}>
       <div className="logo cursor-pointer ">RKR PORTFOLIO</div>
       <button onClick={() => setOpen(!open)} className="manu ">menu</button>
-      {open && manuUi()}
+      <AnimatePresence mode="wait">
+        {open && manuUi()}
+      </AnimatePresence>
     </div>
   )
 }

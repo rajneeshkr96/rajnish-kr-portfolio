@@ -1,44 +1,75 @@
 "use client"
 import Navbar from "./Navbar"
-import { useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import gsap from 'gsap';
+import { AnimatePresence, motion } from "motion/react"
 import { useGSAP } from '@gsap/react';
+import { ringEffect } from "./animation";
 const Hero = () => {
-  gsap.registerPlugin(useGSAP);
-
-  const header = useRef(null);
-
-  useGSAP(
-    () => {
-      // gsap code here...
-      gsap.to('.box', { x: 360 }); // <-- automatically reverted
-    },
-    { scope: header }
-  );
+  const timeline = useMemo(() => gsap.timeline({ paused: true }), [])
+  useGSAP(() => {
+    // Define animations
+    timeline
+      .from(".nav-elements", { y: "-100%", opacity: 0, stagger: 0.5 })
+      .from(".hero-text", { y: "100%", opacity: 0, stagger: 0.5 })
+      .play(); // Start the timeline
+  }, [timeline]); // Add timeline to the dependency array
+  const rings = [
+    { size: 'w-[540px] h-[540px]', delay: 0.2,duration: 2, },
+    { size: 'w-[480px] h-[480px]', delay: 0.7,duration: 1, },
+    { size: 'w-[420px] h-[420px]', delay: 1,duration: 3, },
+    { size: 'w-[360px] h-[360px]', delay: 1.5,duration: 1.5, },
+  ];
   return (
-    <div ref={header} className="header relative w-full h-screen">
-      <Navbar />
-      {/* paragraph */}
-      <section className="absolute top-1/2 right-0 -translate-x-[80%] -translate-y-[72%] ">
-        <h1 style={{ fontSize: "clamp(2rem, 5.5vw, 3rem)" }} className="font-medium">Hi, I&#34;m Rajnish Kumar</h1>
-        <p style={{ fontSize: "clamp(2.3rem, 9vw, 4.5rem)" }} className="font-medium ">I turn imagination into reality</p>
-        <p style={{ fontSize: "clamp(1.25rem, 4vw, 1.5rem)" }} className=" max-w-5xl ">I am a Full Stack Developer and specializing in creating web apps with clean user interface and optimized user experience.</p>
-      </section>
-      {/* line  */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] h-[1px] bg-[rgba(0,0,0,.075)] w-full" />
-      {/* watch */}
-      <section className=" w-full flex items-center " >
-        <div className="w-[620px] h-[620px]  rounded-full border-[rgba(0,0,0,.075)] border flex justify-center items-center absolute top-1/2 left-1/2 translate-x-[20%] -translate-y-[50%]">
-          <div className="w-[460px] h-[460px] bg-[#f4eee9]  rounded-full border-[rgba(0,0,0,.075)] border flex justify-center items-center">
-            <div style={{ boxShadow: "inset 0 2px 2px 0 rgba(0,0,0,.2)" }} className="w-[300px] h-[300px] bg-[#f3f3f3] rounded-full bg-[linear-gradient(180deg,#666,#333)] relative flex justify-center items-center">
-              <div style={{ boxShadow: "0 8px 8px 0 #000,0 24px 24px 0 rgba(0,0,0,.5)" }} className="w-[180px] h-[180px] bg-[linear-gradient(180deg,#fff,#999)] rounded-full  relative">
+    <div className="header w-full grid grid-cols-[0.6fr_0.4fr] max-xl:grid-cols-1 overflow-hidden">
+      <Navbar className="xl:col-start-1 xl:col-end-3 h-max max-xl:px-4 py-6 " />
 
+      <div className="relative -z-10 flex justify-center" >
+        {/* line  */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] h-[1px] bg-[rgba(0,0,0,.075)] w-full -z-20 max-xl:hidden" />
+        {/* paragraph */}
+        <section className="xl:mt-[15.19%] my-8 px-4">
+          <h1 style={{ fontSize: "clamp(1.5rem, 5.5vw, 2.5rem)" }} className="font-medium hero-text">Hi, I&#34;m Rajnish Kumar</h1>
+          <p style={{ fontSize: "clamp(2.3rem, 9vw, 4rem)" }} className="font-medium hero-text">I turn imagination into reality</p>
+          <p style={{ fontSize: "clamp(1.25rem, 4vw, 1.10rem)" }} className=" max-w-3xl hero-text">I am a Full Stack Developer and specializing in creating web apps with clean user interface and optimized user experience.</p>
+        </section>
+      </div>
+
+      <div className="relative -z-10">
+        {/* line  */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] h-[1px] bg-[rgba(0,0,0,.075)] w-full -z-20" />
+        {/* watch */}
+        <motion.section
+          variants={ringEffect}
+          className=" w-full flex items-center justify-center py-6" >
+          <div className="w-[540px] h-[540px] flex justify-center items-center ">
+            <AnimatePresence mode="sync">
+              {rings.map((ring, index) => (
+                <motion.div
+                  key={index}
+                  variants={ringEffect}
+                  initial="initial"
+                  animate="animate"
+                  transition={{
+                    duration: ring.duration,
+                    delay: ring.delay,  // Delay each ring animation
+                    ease: "easeInOut",
+                    
+                  }}
+                  className={`ringEffect absolute rounded-full border-[rgba(0,0,0,.075)] border`}
+                />
+              ))}
+            </AnimatePresence>
+            <div className="w-[380px] h-[380px] bg-[#f4eee9]  rounded-full border-[rgba(0,0,0,.075)] border flex justify-center items-center ">
+              <div style={{ boxShadow: "inset 0 2px 2px 0 rgba(0,0,0,.2)" }} className="w-[220px] h-[220px] bg-[#f3f3f3] rounded-full bg-[linear-gradient(180deg,#666,#333)] relative flex justify-center items-center">
+                <div style={{ boxShadow: "0 8px 8px 0 #000,0 24px 24px 0 rgba(0,0,0,.5)" }} className="w-[100px] h-[100px] bg-[linear-gradient(180deg,#fff,#999)] rounded-full  relative">
+                </div>
               </div>
-
             </div>
           </div>
-        </div>
-      </section>
+        </motion.section>
+
+      </div>
 
     </div>
   )
