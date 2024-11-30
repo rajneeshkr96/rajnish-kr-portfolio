@@ -14,6 +14,6 @@ export const slide = {
 
 export const ringEffect = {
     initial: { opacity: 1,scale:0 },
-    animate:(i: number) => ( { scale: 3, opacity: 0,transition: { duration: 4, ease: "linear", repeat: Infinity,delay:i }}),
+    animate:(i: number) => ( { scale: 2, opacity: 0,transition: { duration: 4, ease: "linear", repeat: Infinity,delay:i }}),
 
 }

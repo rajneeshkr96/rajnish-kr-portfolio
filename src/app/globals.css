@@ -24,3 +24,27 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Tailwind CSS - Inline or CSS File */
+.hover-underline-animation::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Adjust based on your text */
+  width: 0;
+  height: 2px; /* Thickness of the underline */
+  background-color: currentColor; /* Matches text color */
+  transition: width 0.3s ease; /* Animation duration and easing */
+}
+
+.hover-underline-animation:hover::after {
+  width: 100%; /* Full underline on hover */
+}
+@layer base {
+  .menuLink::after {
+    @apply bg-black;
+  }
+  .menuLink:hover::after{
+    @apply bg-transparent
+  }
+}
