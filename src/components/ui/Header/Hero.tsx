@@ -14,12 +14,7 @@ const Hero = () => {
       .from(".hero-text", { y: "100%", opacity: 0, stagger: 0.5 })
       .play(); // Start the timeline
   }, [timeline]); // Add timeline to the dependency array
-  const rings = [
-    { size: 'w-[540px] h-[540px]', delay: 0.2,duration: 2, },
-    { size: 'w-[480px] h-[480px]', delay: 0.7,duration: 1, },
-    { size: 'w-[420px] h-[420px]', delay: 1,duration: 3, },
-    { size: 'w-[360px] h-[360px]', delay: 1.5,duration: 1.5, },
-  ];
+  const rings = [0,0.5,1,1.5,2];
   return (
     <div className="header w-full grid grid-cols-[0.6fr_0.4fr] max-xl:grid-cols-1 overflow-hidden">
       <Navbar className="xl:col-start-1 xl:col-end-3 h-max max-xl:px-4 py-6 " />
@@ -50,13 +45,9 @@ const Hero = () => {
                   variants={ringEffect}
                   initial="initial"
                   animate="animate"
-                  transition={{
-                    duration: ring.duration,
-                    delay: ring.delay,  // Delay each ring animation
-                    ease: "easeInOut",
-                    
-                  }}
-                  className={`ringEffect absolute rounded-full border-[rgba(0,0,0,.075)] border`}
+                  custom={ring}
+                  // transition={{ delay: ring.delay }}
+                  className={`ringEffect absolute w-full h-full rounded-full border-[rgba(0,0,0,.075)] border-2`}
                 />
               ))}
             </AnimatePresence>

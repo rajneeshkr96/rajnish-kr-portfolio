@@ -13,7 +13,7 @@ export const slide = {
 }
 
 export const ringEffect = {
-    initial: { opacity: 0, },
-    animate: { scale: 3, opacity: 1,transition: { duration: 4, ease: "easeInOut", repeat: Infinity, }},
+    initial: { opacity: 1,scale:0 },
+    animate:(i: number) => ( { scale: 3, opacity: 0,transition: { duration: 4, ease: "linear", repeat: Infinity,delay:i }}),
 
 }
