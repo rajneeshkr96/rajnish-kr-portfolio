@@ -25,26 +25,42 @@ body {
   }
 }
 
-/* Tailwind CSS - Inline or CSS File */
 .hover-underline-animation::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -2px; /* Adjust based on your text */
+  bottom: -2px; 
   width: 0;
-  height: 2px; /* Thickness of the underline */
-  background-color: currentColor; /* Matches text color */
-  transition: width 0.3s ease; /* Animation duration and easing */
+  height: 2px; 
+  background-color: currentColor; 
+  transition: width 0.3s ease; 
 }
 
 .hover-underline-animation:hover::after {
-  width: 100%; /* Full underline on hover */
+  width: 100%; 
 }
-@layer base {
-  .menuLink::after {
-    @apply bg-black;
-  }
-  .menuLink:hover::after{
-    @apply bg-transparent
-  }
+
+.val::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  display: inherit;
+  opacity: 1;
+  background-color: #171717;
+  transition: opacity 0.8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+.val:hover::after{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.img-effect{
+  transition:transform 3.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+.img-effect:hover{
+  transform: scale(1.5) translateX(-40px) rotate(10deg);
 }

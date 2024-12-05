@@ -27,23 +27,27 @@ const Navbar: FC<NavbarProps> = ({ className }) => {
   const SocialLink = [
     {
       name: "Github",
-      link: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-      icon: <Github size={"40px"} />
+      link: "https://github.com/rajneeshkr96",
+      icon: <Github size={"40px"} />,
+      bgImage:"/assets/Box1.jpeg"
     },
     {
       name: "LinkedIn",
-      link: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-      icon: <Linkedin size={"40px"} />
+      link: "https://www.linkedin.com/in/rajnish-kumar-9725ba144/",
+      icon: <Linkedin size={"40px"} />,
+      bgImage:"/assets/Box2.jpeg"
     },
     {
       name: "Email",
-      link: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-      icon: <Mail size={"40px"} />
+      link: "mailto:rajneeshkumar9674737@gmail.com",
+      icon: <Mail size={"40px"} />,
+      bgImage:"/assets/Box3.jpeg"
     },
     {
       name: "Instagram",
-      link: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-      icon: <Instagram size={"40px"} />
+      link: "https://www.instagram.com/_rajneeshkr96/",
+      icon: <Instagram size={"40px"} />,
+      bgImage:"/assets/Box4.jpeg"
     },
   ]
   const manuUi = () => {
@@ -62,24 +66,22 @@ const Navbar: FC<NavbarProps> = ({ className }) => {
         </motion.div>
         <div className="flex justify-center items-center gap-y-12 flex-col">
           {manu.map((item, index) => (
-            <motion.a href={item.link} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} key={index} className="text-4xl font-bold cursor-pointer hover-underline-animation w-max h-max px-2 py-1 ">
+            <motion.a href={item.link} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} key={index} className="text-4xl font-bold cursor-pointer relative hover-underline-animation w-max h-max px-2 py-1 ">
               {item.name}
             </motion.a>
           ))}
         </div>
         {/* sociallink */}
-        <div className="socialLinks flex justify-center items-center col-span-2">
+        <div className="socialLinks flex justify-center items-center col-span-2 ">
           <div className="grid grid-cols-2 place-items-center content-center border w-4/5 gap-x-[0.5px] gap-y-[0.2px]">
             {SocialLink.map((item, index) => (
-              <div key={index} className="text-4xl font-bold cursor-pointer border w-full h-[40vh] max-h-[400px]  relative menuLink">
-                <a  href={item.link} className="w-full h-full">
-                  <div className="absolute bottom-6 left-4 text-white">
+              <div key={index} className="text-4xl font-bold border w-full h-[40vh] max-h-[400px] relative overflow-hidden">
+                <a target="_blank" href={item.link} className="inline-block !w-full !h-full val">
+                  <div className="absolute bottom-6 left-4 text-white z-30 w-max h-max">
                     <p className="px-2 " >{item.icon}</p>
                     <p>{item.name}</p>
                   </div>
-                  <div className="w-full h-full absolute -z-10"/>
-      
-                  
+                  <div style={{background:`url(${item.bgImage}) center center / cover no-repeat`}}  className="w-full h-full absolute z-10 img-effect "/>
                 </a>
 
               </div>

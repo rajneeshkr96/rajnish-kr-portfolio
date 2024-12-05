@@ -1,6 +1,6 @@
 "use client"
 import Navbar from "./Navbar"
-import { useEffect, useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 import gsap from 'gsap';
 import { AnimatePresence, motion } from "motion/react"
 import { useGSAP } from '@gsap/react';
