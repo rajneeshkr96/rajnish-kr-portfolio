@@ -16,7 +16,7 @@ const Hero = () => {
   }, [timeline]); // Add timeline to the dependency array
   const rings = [0,0.5,1,1.5,2];
   return (
-    <div className="header w-full grid grid-cols-[0.6fr_0.4fr] max-xl:grid-cols-1 overflow-hidden">
+    <div className="header w-full grid grid-cols-[0.6fr_0.4fr] max-xl:grid-cols-1">
       <Navbar className="xl:col-start-1 xl:col-end-3 h-max max-xl:px-4 py-6 " />
 
       <div className="relative -z-10 flex justify-center" >
@@ -37,7 +37,6 @@ const Hero = () => {
         <motion.section
           variants={ringEffect}
           className=" w-full flex items-center justify-center py-6" >
-          <div className="w-[540px] h-[540px] flex justify-center items-center ">
             <AnimatePresence mode="sync">
               {rings.map((ring, index) => (
                 <motion.div
@@ -47,15 +46,14 @@ const Hero = () => {
                   animate="animate"
                   custom={ring}
                   // transition={{ delay: ring.delay }}
-                  className={`ringEffect absolute w-full h-full rounded-full border-[rgba(0,0,0,.075)] border-2`}
+                  className={`ringEffect absolute w-[540px] max-xl:w-[380px] max-xl:h-[380px] h-[540px] rounded-full border-[rgba(0,0,0,.075)] border-2`}
                 />
               ))}
             </AnimatePresence>
-            <div className="w-[380px] h-[380px] bg-[#f4eee9]  rounded-full border-[rgba(0,0,0,.075)] border flex justify-center items-center ">
+            <div className="w-[380px] max-md:w-[280px] max-md:h-[280px]  h-[380px] bg-[#f4eee9]  rounded-full border-[rgba(0,0,0,.075)] border flex justify-center items-center ">
               <div style={{ boxShadow: "inset 0 2px 2px 0 rgba(0,0,0,.2)" }} className="w-[220px] h-[220px] bg-[#f3f3f3] rounded-full bg-[linear-gradient(180deg,#666,#333)] relative flex justify-center items-center">
                 <div style={{ boxShadow: "0 8px 8px 0 #000,0 24px 24px 0 rgba(0,0,0,.5)" }} className="w-[100px] h-[100px] bg-[linear-gradient(180deg,#fff,#999)] rounded-full  relative">
                 </div>
-              </div>
             </div>
           </div>
         </motion.section>

@@ -72,10 +72,10 @@ const Navbar: FC<NavbarProps> = ({ className }) => {
           ))}
         </div>
         {/* sociallink */}
-        <div className="socialLinks flex justify-center items-center col-span-2 ">
+        <div className="socialLinks flex justify-center items-center col-span-2  ">
           <div className="grid grid-cols-2 place-items-center content-center border w-4/5 gap-x-[0.5px] gap-y-[0.2px]">
             {SocialLink.map((item, index) => (
-              <div key={index} className="text-4xl font-bold border w-full h-[40vh] max-h-[400px] relative overflow-hidden">
+              <motion.div whileInView="visible" initial={{scaleX:0,scaleY:0}} animate={{scaleX:1,scaleY:1}} transition={{delay:0.5,duration:1.5,ease:"circOut"}} key={index} className="text-4xl font-bold border w-full h-[40vh] max-h-[400px] relative overflow-hidden">
                 <a target="_blank" href={item.link} className="inline-block !w-full !h-full val">
                   <div className="absolute bottom-6 left-4 text-white z-30 w-max h-max">
                     <p className="px-2 " >{item.icon}</p>
@@ -84,7 +84,7 @@ const Navbar: FC<NavbarProps> = ({ className }) => {
                   <div style={{background:`url(${item.bgImage}) center center / cover no-repeat`}}  className="w-full h-full absolute z-10 img-effect "/>
                 </a>
 
-              </div>
+              </motion.div >
             ))}
           </div>
         </div>
