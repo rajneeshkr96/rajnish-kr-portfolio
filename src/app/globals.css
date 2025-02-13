@@ -39,7 +39,6 @@ body {
 .hover-underline-animation:hover::after {
   width: 100%; 
 }
-
 .val::after{
   content: "";
   position: absolute;
@@ -53,10 +52,16 @@ body {
   background-color: #171717;
   transition: opacity 0.8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
-.val:hover::after{
-  opacity: 0;
-  pointer-events: none;
+
+@media (min-width: 768px) {
+
+  .val:hover::after{
+    opacity: 0;
+    pointer-events: none;
+  }
 }
+
+
 
 .img-effect{
   transition:transform 3.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
